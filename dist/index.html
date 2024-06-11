@@ -1,9 +1,58 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Getting Started</title>
-  </head>
-  <body>
-  <script defer src="runtime.js"></script><script defer src="main.js"></script></body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo List</title>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="add-container">
+        <button id="add-button">
+          <img id="plus-icon">Add Task   
+        </button>
+      </div>
+    </div>
+    <div class="main">
+      <div class="task-container">
+        <p id="task-name">title</p>
+        <p>due date</p>
+        <p>description</p>
+      </div>
+    </div>
+  
+    <!--Modal-->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h2 id="modal-title">Create Task</h2>
+          <span class="close">&times;</span>
+        </div>
+
+        <form id="task-form">
+          <div class="form-group">
+            <input class="input" type="text" id="taskName" name="taskName" required="" autocomplete="off">
+            <label class="user-label" for="taskName">Task Name</label>
+          </div>
+          <div class="form-group">
+            <input class="input" type="text" id="dueDate" name="dueDate" required="" autocomplete="off">
+            <label class="user-label" for="dueDate">Due Date</label>
+          </div>
+          <div class="form-group">
+            <input class="input" type="text" id="description" name="description" required="" autocomplete="off">
+            <label class="user-label" for="description">Description</label>
+          </div>
+        </form>
+
+        <div class="modal-footer">
+          <button type="submit" id="submit">Submit</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+<script defer src="runtime.js"></script><script defer src="main.js"></script></body>
 </html>

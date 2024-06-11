@@ -1,3 +1,609 @@
-.hello {
-    color: red;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/*START BASE CSS*/
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', Arial;
+    color: white;
 }
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: #1b1d1d;
+    width: 14%;
+    height: 100%;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #222425;
+    width: 86%;
+    height: 100%;
+    justify-items: center;
+}
+
+button {
+  font-family: 'Roboto', Arial;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  /* background-color: #4a484e; */
+  background-color: #f4f3f7;
+  margin: 10px 0;
+  width: 100%;
+}
+
+/*END BASE CSS*/
+/*START SIDEBAR*/
+
+.add-sidebar-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+}
+
+#add-task-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  height: 50px;
+  width: 11%;
+  background-color: #222425;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#add-sidebar-button, .sidebar-project-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    height: 50px;
+    width: 90%;
+    background-color: #1b1d1d;
+    color: white;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.sidebar-project-button {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+#add-sidebar-button:hover, .sidebar-project-button:hover, #add-task-button:hover {
+    background-color: #383b3b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+#plus-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.sidebar-project-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 40%;
+}
+
+/* BEGIN EVERYTHING IN MODAL*/
+/* Modal background */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #292b2b;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  width: 25%; /* Could be more or less, depending on screen size */
+  height: 45%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.modal-header {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+text-align: center;
+}
+
+.modal-footer {
+display: flex;
+justify-content: center;
+}
+
+#modal-title {
+ 
+}
+
+/* Modal Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#task-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.form-group {
+  position: relative;
+ }
+ 
+ .input {
+  border: solid 1.5px #9e9e9e;
+  border-radius: 1rem;
+  background: none;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #f5f5f5;
+  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+ }
+ 
+ .user-label {
+  position: absolute;
+  left: 15px;
+  color: #e8e8e8;
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: 150ms cubic-bezier(0.4,0,0.2,1);
+ }
+ 
+ .input:focus, input:valid {
+  outline: none;
+  border: 1.5px solid #2196f3;
+ }
+ 
+ .input:focus ~ label, input:valid ~ label {
+  transform: translateY(-50%) scale(0.8);
+  background-color: #212121;
+  padding: 0 .2em;
+  color: #2196f3;
+ }
+
+ /*Begin new project/task checkbox toggle*/
+ .switch {
+  --button-width: 3.5em;
+  --button-height: 2em;
+  --toggle-diameter: 1.5em;
+  --button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+  --toggle-shadow-offset: 10px;
+  --toggle-wider: 3em;
+  --color-grey: #cccccc;
+  --color-green: #2196f3;
+ }
+ 
+ .slider {
+  display: inline-block;
+  width: var(--button-width);
+  height: var(--button-height);
+  background-color: var(--color-grey);
+  border-radius: calc(var(--button-height) / 2);
+  position: relative;
+  transition: 0.3s all ease-in-out;
+ }
+ 
+ .slider::after {
+  content: "";
+  display: inline-block;
+  width: var(--toggle-diameter);
+  height: var(--toggle-diameter);
+  background-color: #fff;
+  border-radius: calc(var(--toggle-diameter) / 2);
+  position: absolute;
+  top: var(--button-toggle-offset);
+  transform: translateX(var(--button-toggle-offset));
+  box-shadow: var(--toggle-shadow-offset) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+  transition: 0.3s all ease-in-out;
+ }
+ 
+ .switch input[type="checkbox"]:checked + .slider {
+  background-color: var(--color-green);
+ }
+ 
+ .switch input[type="checkbox"]:checked + .slider::after {
+  transform: translateX(calc(var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset)));
+  box-shadow: calc(var(--toggle-shadow-offset) * -1) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+ }
+ 
+ .switch input[type="checkbox"] {
+  display: none;
+ }
+ 
+ .switch input[type="checkbox"]:active + .slider::after {
+  width: var(--toggle-wider);
+ }
+ 
+ .switch input[type="checkbox"]:checked:active + .slider::after {
+  transform: translateX(calc(var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset)));
+ }
+ /*End new project/task checkbox toggle*/
+
+ .project-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+ }
+
+ /*Begin Modal Footer's Submit and Cancel Button*/
+ .modal-footer-button {
+  font-family: inherit;
+  display: inline-block;
+  width: 5em;
+  height: 2.6em;
+  line-height: 2.5em;
+  margin: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color .5s;
+  z-index: 1;
+  font-size: 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
+ }
+ 
+ .modal-footer-button:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+ }
+ 
+ .modal-footer-button:hover {
+  color: #fff;
+ }
+ 
+ .modal-footer-button:before {
+  top: 100%;
+  left: 100%;
+  transition: all .7s;
+ }
+ 
+ .modal-footer-button:hover:before {
+  top: -30px;
+  left: -30px;
+ }
+ 
+ .modal-footer-button:active:before {
+  transition: background 0s;
+ }
+
+ #submit {
+  --color: #2196f3;
+}
+
+#submit:active:before {
+  background: #2196f3;
+}
+
+#cancel {
+  --color: #f44336;
+}
+
+#cancel:active:before {
+  background: #f44336;
+}
+ /*End Modal Footer's Submit and Cancel Button*/
+/*END EVERYTHING IN MODAL*/
+/*END SIDEBAR*/
+
+/*START MAIN*/
+.task-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 70%;
+    height: 50%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#task-container-header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background-color: #222425; /* Ensure background color matches the main container */
+  z-index: 1; /* Ensure it stays on top */
+}
+
+#task-card-container {
+
+}
+
+/* Webkit-based browsers (Chrome, Safari, newer versions of Edge) */
+.task-container::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the scrollbar */
+}
+
+.task-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+.task-container::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.task-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb on hover */
+}
+
+.task-card {
+  display: grid;
+  grid-template-rows: 48% 48% 2%;
+  grid-template-columns: 10% 80% 10%;
+  /* background-color: #383b3b; */
+  width: 100%;
+  height: 60px;
+  margin: 0px;
+  margin-bottom: 5px;
+  color: white;
+}
+
+#task-card-name {
+  grid-area: 1 / 2 / 2 / 3;
+  align-self: center;
+}
+
+#task-card-due-date {
+  grid-area: 1 / 3 / 2 / 4;
+  align-self: center;
+}
+
+#task-card-description {
+  grid-area: 2 / 2 / 3 / 3;
+  align-self: center;
+}
+
+.divider-container {
+  grid-area: 3 / 1 / 4 / 4;
+  align-self: center;
+}
+
+.add-task-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  margin: 0px;
+  margin-bottom: 5px;
+  color: white;
+}
+
+/*Begin task card checkbox*/
+.checkbox-container {
+  position: relative;
+  top: 16px;
+  right: -20px;
+  grid-area: 1 / 1 / 2 / 2;
+  margin-top: -10px;
+}
+
+.checkbox-container > svg {
+  position: absolute;
+  top: -130%;
+  left: -170%;
+  width: 70px; /* Adjusted from 110px to 70px */
+  pointer-events: none;
+}
+
+.checkbox-container * {
+  box-sizing: border-box;
+}
+
+.checkbox-container input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  margin: 0;
+}
+
+.checkbox-container input[type="checkbox"]:focus {
+  outline: 0;
+}
+
+.checkbox-container .cbx {
+  width: 16px; /* Adjusted from 24px to 16px */
+  height: 16px; /* Adjusted from 24px to 16px */
+  top: calc(100px - 8px); /* Adjusted for new size */
+  left: calc(100px - 8px); /* Adjusted for new size */
+}
+
+.checkbox-container .cbx input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px; /* Adjusted from 24px to 16px */
+  height: 16px; /* Adjusted from 24px to 16px */
+  border: 2px solid #bfbfc0;
+  border-radius: 50%;
+}
+
+.checkbox-container .cbx label {
+  width: 16px; /* Adjusted from 24px to 16px */
+  height: 16px; /* Adjusted from 24px to 16px */
+  background: none;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px; /* Adjusted from 12px to 8px */
+  left: 0;
+  transform: trasnlate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+.checkbox-container .cbx svg {
+  position: absolute;
+  /* top: 5px;
+  left: 4px; */
+  top: 3px; /* Adjusted for new size */
+  left: 3px; /* Adjusted for new size */
+  width: 10px; /* Adjusted for new size */
+  height: 10px; /* Adjusted for new size */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.checkbox-container .cbx svg path {
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 19;
+  stroke-dashoffset: 19;
+  transition: stroke-dashoffset 0.3s ease;
+  transition-delay: 0.2s;
+}
+
+.checkbox-container .cbx input:checked + label {
+  animation: splash-12 0.6s ease forwards;
+}
+
+.checkbox-container .cbx input:checked + label + svg path {
+  stroke-dashoffset: 0;
+}
+
+@-moz-keyframes splash-12 {
+  40% {
+    background: #2196f3;
+    box-shadow: 0 -18px 0 -8px #2196f3, 16px -8px 0 -8px #2196f3, 16px 8px 0 -8px #2196f3, 0 18px 0 -8px #2196f3, -16px 8px 0 -8px #2196f3, -16px -8px 0 -8px #2196f3;
+  }
+
+  100% {
+    background: #2196f3;
+    box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
+  }
+}
+
+@-webkit-keyframes splash-12 {
+  40% {
+    background: #2196f3;
+    box-shadow: 0 -18px 0 -8px #2196f3, 16px -8px 0 -8px #2196f3, 16px 8px 0 -8px #2196f3, 0 18px 0 -8px #2196f3, -16px 8px 0 -8px #2196f3, -16px -8px 0 -8px #2196f3;
+  }
+
+  100% {
+    background: #2196f3;
+    box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
+  }
+}
+
+@-o-keyframes splash-12 {
+  40% {
+    background: #2196f3;
+    box-shadow: 0 -18px 0 -8px #2196f3, 16px -8px 0 -8px #2196f3, 16px 8px 0 -8px #2196f3, 0 18px 0 -8px #2196f3, -16px 8px 0 -8px #2196f3, -16px -8px 0 -8px #2196f3;
+  }
+
+  100% {
+    background: #2196f3;
+    box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
+  }
+}
+
+@keyframes splash-12 {
+  40% {
+    background: #2196f3;
+    box-shadow: 0 -18px 0 -8px #2196f3, 16px -8px 0 -8px #2196f3, 16px 8px 0 -8px #2196f3, 0 18px 0 -8px #2196f3, -16px 8px 0 -8px #2196f3, -16px -8px 0 -8px #2196f3;
+  }
+
+  100% {
+    background: #2196f3;
+    box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
+  }
+}
+/*End task card checkbox*/
+
+.project-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 70%;
+  height: 50%;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #383b3b;
+  width: 100%;
+  height: 40%;
+  border-radius: 10px;
+  margin: 0px;
+  color: white;
+}
+/*END MAIN*/

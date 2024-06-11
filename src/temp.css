@@ -1,0 +1,150 @@
+/* Modal background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+  
+  /* Modal Content/Box */
+.modal-content {
+    background-color: #292b2b;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 20%; /* Could be more or less, depending on screen size */
+    height: 35%;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+}
+
+#modal-title {
+   
+}
+  
+  /* Modal Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.form-group {
+    --width-of-input: 200px;
+    --border-height: 1px;
+    --border-before-color: rgba(221, 221, 221, 0.39);
+    --border-after-color: #5891ff;
+    --input-hovered-color: #4985e01f;
+    position: relative;
+    width: var(--width-of-input);
+}
+
+.input {
+    color: #fff;
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: var(--border-height) solid var(--border-before-color);
+ }
+
+ /* styling of Input */
+.input {
+    color: #fff;
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: var(--border-height) solid var(--border-before-color);
+ }
+ /* styling of animated border */
+ .input-border {
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s;
+ }
+ /* Hover on Input */
+ input:hover {
+    background: var(--input-hovered-color);
+ }
+ 
+ input:focus {
+    outline: none;
+ }
+ /* here is code of animated border */
+ input:focus ~ .input-border {
+    width: 100%;
+ } 
+
+
+ <div class="modal-header">
+          <h2 id="modal-title">Create Task</h2>
+          <span class="close">&times;</span>
+        </div>
+
+        <form id="task-form">
+          <div class="form-group">
+            <label for="taskName"></label>
+            <input class="input" type="text" id="taskName" name="taskName" placeholder="Task Name">
+            <span class="input-border"></span>
+          </div>
+          <div class="form-group">
+            <label for="dueDate"></label>
+            <input class="input" type="dueDate" id="dueDate" name="dueDate" placeholder="Due Date">
+            <span class="input-border"></span>
+          </div>
+          <div class="form-group">
+            <label for="description"></label>
+            <input class="input" type="description" id="description" name="description" placeholder="Description">
+            <span class="input-border"></span>
+          </div>
+        </form>
+
+        <div class="modal-footer">
+          <button type="submit" id="submit">Submit</button>
+        </div>
