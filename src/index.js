@@ -57,6 +57,9 @@ window.addEventListener('click', () => {
 // Event listender for form submit
 document.getElementById('task-form').addEventListener('submit', handleTaskFormSubmit);
 
+// Event listener for form cancel
+document.getElementById('cancel').addEventListener('click', closeModal);
+
 // Function to handle form submission
 function handleTaskFormSubmit(event)
 {
@@ -205,6 +208,7 @@ function loadProjectForm() {
     <button type="button" class="modal-footer-button" id="cancel">Cancel</button>
     </div>
   `;
+  document.getElementById('cancel').addEventListener('click', closeModal);
 }
 
 // Load task form in modal
@@ -229,4 +233,5 @@ function loadTaskForm() {
     </div>
 </div>
   `;
+  document.getElementById('cancel').addEventListener('click', closeModal);
 }
