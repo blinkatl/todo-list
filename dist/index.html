@@ -9,16 +9,26 @@
   <div class="container">
     <div class="sidebar">
       <div class="add-container">
-        <button id="add-button">
+        <button id="add-sidebar-button">
           <img id="plus-icon">Add Task   
         </button>
       </div>
+      <div class="sidebar-project-container" id="sidebar-project-container"></div>
     </div>
     <div class="main">
-      <div class="task-container">
-        <p id="task-name">title</p>
-        <p>due date</p>
-        <p>description</p>
+      <div class="task-container" id="task-container">
+        <div id="task-container-header">
+          <h2>Tasks</h2>
+        </div>
+        <div id="task-card-container">
+          <!--Task cards inserted here-->
+          <div class="add-task-card" id="add-task-card">
+            <button id="add-task-button">Add Task</button>
+          </div>
+        </div>
+      </div>
+      <div class="project-container" id="project-container">
+        <!--Project cards inserted here-->
       </div>
     </div>
   
@@ -29,6 +39,14 @@
         <div class="modal-header">
           <h2 id="modal-title">Create Task</h2>
           <span class="close">&times;</span>
+        </div>
+        
+        <div class="project-slider-container" id="project-slider-container">
+          <p id="checkbox-prompt">New Project?</p>
+          <label class="switch">
+          <input type="checkbox" id="toggleForm">
+          <span class="slider"></span> 
+          </label>
         </div>
 
         <form id="task-form">
@@ -44,11 +62,11 @@
             <input class="input" type="text" id="description" name="description" required="" autocomplete="off">
             <label class="user-label" for="description">Description</label>
           </div>
+          <div class="modal-footer">
+            <button type="submit" class="modal-footer-button" id="submit">Submit</button>
+            <button type="button" class="modal-footer-button" id="cancel">Cancel</button>
+          </div>
         </form>
-
-        <div class="modal-footer">
-          <button type="submit" id="submit">Submit</button>
-        </div>
 
       </div>
     </div>

@@ -75,7 +75,7 @@ button {
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-#add-sidebar-button, .sidebar-project-button {
+#add-task-sidebar-button, .sidebar-project-button, #sidebar-add-project-button {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -95,7 +95,15 @@ button {
   font-weight: 500;
 }
 
-#add-sidebar-button:hover, .sidebar-project-button:hover, #add-task-button:hover {
+#sidebar-add-project-button {
+  justify-content: space-between;
+}
+
+#add-task-sidebar-button:hover, 
+.sidebar-project-button:hover, 
+#add-task-button:hover,
+#sidebar-add-project-button:hover
+ {
     background-color: #383b3b;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
 }
@@ -186,7 +194,7 @@ justify-content: center;
   cursor: pointer;
 }
 
-#task-form {
+#form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -340,11 +348,13 @@ justify-content: center;
   transition: background 0s;
  }
 
- #submit {
+ #submit-task,
+ #submit-project {
   --color: #2196f3;
 }
 
-#submit:active:before {
+#submit-task:active:before,
+#submit-project:active:before {
   background: #2196f3;
 }
 
@@ -599,7 +609,7 @@ justify-content: center;
 .project-card {
   display: flex;
   flex-direction: column;
-  background-color: #383b3b;
+  /* background-color: #383b3b; */
   width: 100%;
   height: 40%;
   border-radius: 10px;
