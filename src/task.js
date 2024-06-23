@@ -1,3 +1,9 @@
+// ==========================
+// Task class
+//   The Task class represents a task that goes into project cards.
+//   Method if creating task card is here, but appending it is located
+//   in handleTaskFormSubmit() in index.js.
+// ==========================
 export default class Task {
     constructor(taskName, description, dueDate, priority) {
         this.taskName = taskName;

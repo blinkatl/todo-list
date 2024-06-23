@@ -1,6 +1,11 @@
+// ==========================
+// Project class
+//   The Project class represents a project which can contain multiple tasks.
+//   It provides methods to create and manage project cards and sidebar buttons,
+//   append them to the DOM, and manage tasks within the project.
+// ==========================
 import { createAddIcon } from './svgUtils.js';
 import sidebarProjectButtonIcon from './svgUtils.js';
-import Task from './task.js';
 import { modal, loadTaskForm } from './index.js';
 
 export default class Project {

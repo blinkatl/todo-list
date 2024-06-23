@@ -10,6 +10,7 @@ import Project from './project.js';
 import plusIcon from '../files/images/plus.png';
 import sidebarProjectButtonIcon from './svgUtils.js';
 import { createAddIcon } from './svgUtils.js';
+import WeatherWidget from './weather.js';
 
 // ==========================
 // Constants and Variables
@@ -182,4 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
   projectTodaysTasks.appendProjectCardToDOM(modal, loadTaskForm);
   const projectContainerTodaysTasks = document.getElementById('task-container');
   projectContainerTodaysTasks.appendChild(projectTodaysTasks.projectCard);
+
+  //Load weather API
+  const weatherWidget = new WeatherWidget();
+  weatherWidget.initialize();
 });
+
+

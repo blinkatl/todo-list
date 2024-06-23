@@ -21,6 +21,7 @@ html, body {
 .sidebar {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background-color: #1b1d1d;
     width: 14%;
     height: 100%;
@@ -367,17 +368,51 @@ justify-content: center;
 }
  /*End Modal Footer's Submit and Cancel Button*/
 /*END EVERYTHING IN MODAL*/
+
+/*BEGIN WEATHER WIDGET*/
+#weather-container {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  width: 100%;
+  font-size: 14px;
+}
+
+#weather-upper-container {
+  display: flex;
+  height: 60%;
+}
+
+#weather-upper-left-container,
+#weather-upper-right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+}
+
+#weather-lower-container {
+  height: 40%;
+}
+
+#today-icon {
+  height: 40%;
+  width: 40%;
+}
+/*END WEATHER WIDGET*/
+
 /*END SIDEBAR*/
 
 /*START MAIN*/
 .task-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 70%;
-    height: 50%;
-    overflow-y: auto;
-    overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 70%;
+  height: 50%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #task-container-header {
